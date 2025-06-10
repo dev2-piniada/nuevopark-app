@@ -1,7 +1,7 @@
 // app/(tabs)/home.tsx
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import React from 'react';
-import HomeTile from '../../components/HomeTile';
+import HomeTile from '../components/HomeTile';
 
 const Home: React.FC = () => {
     return (
@@ -11,12 +11,12 @@ const Home: React.FC = () => {
             </Text>
 
             <View className="flex-row flex-wrap justify-between">
-                <HomeTile icon={require('../../assets/Icon_Book.svg')} title="Enter" subtitle="Enter & exit a carpark" />
-                <HomeTile icon={require('../../assets/Icon_Book.svg')} title="Book" subtitle="Book parking in advance" />
-                <HomeTile icon={require('../../assets/Icon_Book.svg')} title="Pay" subtitle="Pay using the App" />
-                <HomeTile icon={require('../../assets/Icon_Book.svg')} title="Validate" subtitle="Validate a parking ticket" />
-                <HomeTile icon={require('../../assets/Icon_Book.svg')} title="QuickPark" subtitle="Repeat a previous park" />
-                <HomeTile icon={require('../../assets/Icon_Book.svg')} title="Park" subtitle="Park with the App" />
+                <HomeTile icon={require('../assets/Icon_Book.svg')} title="Enter" subtitle="Enter & exit a carpark" />
+                <HomeTile icon={require('../assets/Icon_Book.svg')} title="Book" subtitle="Book parking in advance" />
+                <HomeTile icon={require('../assets/Icon_Book.svg')} title="Pay" subtitle="Pay using the App" />
+                <HomeTile icon={require('../assets/Icon_Book.svg')} title="Validate" subtitle="Validate a parking ticket" />
+                <HomeTile icon={require('../assets/Icon_Book.svg')} title="QuickPark" subtitle="Repeat a previous park" />
+                <HomeTile icon={require('../assets/Icon_Book.svg')} title="Park" subtitle="Park with the App" />
             </View>
 
             <View className="mt-6 items-center">
