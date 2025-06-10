@@ -1,41 +1,94 @@
-// app/(tabs)/home.tsx
-import { View, Text, TouchableOpacity, Image } from 'react-native';
 import React from 'react';
-import HomeTile from '../components/HomeTile';
+import {
+    View,
+    Text,
+    StyleSheet,
+    SafeAreaView,
+    TouchableOpacity,
+    FlatList,
+    Image
+} from 'react-native';
 
-const Home: React.FC = () => {
+const actions = [
+    { key: 'Enter', label: 'Enter & exit a carpark', icon: require('../assets/Icon_Book.svg') },
+    { key: 'Book', label: 'Book parking in advance', icon: require('../assets/Icon_Book.svg') },
+    { key: 'Pay', label: 'Pay using the App', icon: require('../assets/Icon_Book.svg') },
+    { key: 'Validate', label: 'Validate a parking ticket', icon: require('../assets/Icon_Book.svg') },
+    { key: 'QuickPark', label: 'Repeat a previous park', icon: require('../assets/Icon_Book.svg') },
+    { key: 'Park', label: 'Park with the App', icon: require('../assets/Icon_Book.svg') },
+];
+
+export default function HomeScreen() {
     return (
-        <View className="flex-1 bg-gray-100 p-4 pt-12">
-            <Text className="text-center text-sm bg-blue-100 text-blue-800 py-2 px-4 rounded-full mb-4">
-                Register for Charge parking & save
-            </Text>
-
-            <View className="flex-row flex-wrap justify-between">
-                <HomeTile icon={require('../assets/Icon_Book.svg')} title="Enter" subtitle="Enter & exit a carpark" />
-                <HomeTile icon={require('../assets/Icon_Book.svg')} title="Book" subtitle="Book parking in advance" />
-                <HomeTile icon={require('../assets/Icon_Book.svg')} title="Pay" subtitle="Pay using the App" />
-                <HomeTile icon={require('../assets/Icon_Book.svg')} title="Validate" subtitle="Validate a parking ticket" />
-                <HomeTile icon={require('../assets/Icon_Book.svg')} title="QuickPark" subtitle="Repeat a previous park" />
-                <HomeTile icon={require('../assets/Icon_Book.svg')} title="Park" subtitle="Park with the App" />
+        <SafeAreaView style={styles.container}>
+            {/* Top row */}
+            <View style={styles.topRow}>
+                <Text style={styles.signupText}>👤 Sign-up</Text>
+                <Image
+                    source={{ uri: 'https://t3.app.stg.nuevopark.com/_static/operators/4c4b30ce-dd7a-442b-80b3-340110bf9ba2/staticfiles/30ad2398-3290-4f07-9e70-17cf66472838.png' }}
+                    style={styles.logo}
+                />
             </View>
 
-            <View className="mt-6 items-center">
-                <Text className="text-gray-600 text-sm">Install this App to access all its features</Text>
-                <TouchableOpacity className="mt-2 px-4 py-2 bg-blue-500 rounded-full">
-                    <Text className="text-white">Download App</Text>
-                </TouchableOpacity>
+            {/* Banner */}
+            <TouchableOpacity style={styles.banner}>
+                <Text style={styles.bannerText}>Register for Charge parking & save ➔</Text>
+            </TouchableOpacity>
 
-                <View className="flex-row space-x-4 mt-4">
-                    <TouchableOpacity>
-                        <Text className="text-blue-600 underline">Provide your feedback</Text>
+            {/* Grid */}
+            <FlatList
+                data={actions}
+                numColumns={2}
+                columnWrapperStyle={{ justifyContent: 'space-between' }}
+                contentContainerStyle={{ marginTop: 16 }}
+                renderItem={({ item }) => (
+                    <TouchableOpacity style={styles.card}>
+                        <Image source={item.icon} style={styles.cardIcon} />
+                        <Text style={styles.cardTitle}>{item.key}</Text>
+                        <Text style={styles.cardSubtitle}>{item.label}</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity>
-                        <Text className="text-blue-600 underline">View Terms & Conditions</Text>
-                    </TouchableOpacity>
-                </View>
+                )}
+            />
+
+            {/* Optional footer banner */}
+            <View style={styles.footerBanner}>
+                <Text style={{ fontSize: 12, color: 'gray' }}>
+                    Install this App to access all its features
+                </Text>
             </View>
-        </View>
+        </SafeAreaView>
     );
-};
+}
 
-export default Home;
+const styles = StyleSheet.create({
+    container: { flex: 1, padding: 16, backgroundColor: '#fff' },
+    topRow: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
+    signupText: { fontSize: 16, margin: 8 },
+    logo: { width: 36, height: 36, margin: 8 },
+    banner: {
+        backgroundColor: '#f3f3f3',
+        borderRadius: 8,
+        padding: 12,
+        marginTop: 16,
+    },
+    bannerText: { fontSize: 14, color: '#333' },
+    card: {
+        backgroundColor: '#f9f9f9',
+        padding: 16,
+        borderRadius: 12,
+        marginBottom: 16,
+        width: '48%',
+        alignItems: 'center',
+    },
+    cardIcon: { width: 48, height: 48, marginBottom: 12 },
+    cardTitle: { fontWeight: 'bold', fontSize: 16 },
+    cardSubtitle: { fontSize: 12, textAlign: 'center', color: '#666' },
+    footerBanner: {
+        alignItems: 'center',
+        marginTop: 16,
+    },
+});
